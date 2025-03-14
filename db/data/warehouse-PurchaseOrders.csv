@@ -1,0 +1,11 @@
+ID,Vendor_ID,status_code,NeedByDate,DeliveryDate,totalAmount,currency,createdAt,createdBy,modifiedAt,modifiedBy
+f8c1a5e9-2b4d-4f6a-8c0e-2b4d6f8a0c2e,a4f6c8e0-2b4d-4e6f-8a0c-2d4e6f8a0c2d,Shipped,2025-01-20,2025-01-18,8879.10,USD,2025-01-10T09:00:00Z,admin,2025-01-18T14:30:00Z,admin
+a9d2b6f0-3c5e-5a7b-9d1f-3c5e7a9b1d3e,b5a7d9f1-3c5e-5f7a-9b1d-3e5f7a9b1d3e,Shipped,2025-01-22,2025-01-20,7399.35,USD,2025-01-10T10:00:00Z,admin,2025-01-20T11:15:00Z,admin
+b0e3c7a1-4d6f-6b8c-0e2a-4d6f8b0c2e4f,c6b8e0a2-4d6f-6a8b-0c2e-4f6a8b0c2e4f,Shipped,2025-01-25,2025-01-23,4423.68,USD,2025-01-10T11:00:00Z,admin,2025-01-23T16:45:00Z,admin
+c1f4d8b2-5e7a-7c9d-1f3b-5e7a9c1d3f5a,d7c9f1b3-5e7a-7b9c-1d3f-5a7b9c1d3f5a,Pending,2025-01-28,,3049.65,USD,2025-01-10T12:00:00Z,admin,2025-01-10T12:00:00Z,admin
+d2a5e9c3-6f8b-8d0e-2a4c-6f8b0d2e4a6b,e8d0a2c4-6f8b-8c0d-2e4a-6b8c0d2e4a6b,Pending,2025-01-30,,2497.50,USD,2025-01-10T13:00:00Z,admin,2025-01-10T13:00:00Z,admin
+e3b6f0d4-7a9c-9e1f-3b5d-7a9c1e3f5b7c,f9e1b3d5-7a9c-9d1e-3f5b-7c9d1e3f5b7c,Pending,2025-02-05,,5389.87,USD,2025-01-15T09:00:00Z,admin,2025-01-15T09:00:00Z,admin
+f4c7a1e5-8b0d-0f2a-4c6e-8b0d2f4a6c8b,a0f2c4e6-8b0d-0e2f-4a6c-8b0d2e4a6c8b,Cancelled,2025-01-18,,2159.82,USD,2025-01-05T10:00:00Z,admin,2025-01-08T15:30:00Z,admin
+a5d8b2f6-9c1e-1a3b-5d7f-9c1e3a5b7d9c,b1a3d5f7-9c1e-1f3a-5b7d-9c1e3f5b7d9c,Shipped,2025-01-12,2025-01-10,10999.60,USD,2025-01-02T09:00:00Z,admin,2025-01-10T13:45:00Z,admin
+b6e9c3a7-0d2f-2b4c-6e8a-0d2f4b6c8e0d,c2b4e6f8-0d2f-2a4b-6c8e-0d2f4a6c8e0d,Shipped,2025-01-15,2025-01-14,5539.10,USD,2025-01-05T11:00:00Z,admin,2025-01-14T10:30:00Z,admin
+c7f0d4b8-1e3a-3c5d-7f9b-1e3a5c7d9f1e,d3c5f7a9-1e3a-3b5c-7d9f-1e3a5b7d9f1e,Shipped,2025-01-17,2025-01-16,989.70,USD,2025-01-07T14:00:00Z,admin,2025-01-16T09:15:00Z,admin

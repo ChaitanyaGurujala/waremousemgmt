@@ -1,0 +1,11 @@
+###
+GET http://localhost:4004/warehouse/getProductAvailability(productId='c7b0f3d6-8e1a-3b5c-7d9f-1a3b5c7d9f1a')
+
+###
+POST http://localhost:4004/warehouse/test2
+Content-Type: application/json
+
+{
+    "name":"AASD",
+    "quantity": 9
+}

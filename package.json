@@ -1,0 +1,34 @@
+{
+  "name": "warehousemgmt",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^8",
+    "express": "^4",
+    "uuid": "^11.1.0",
+    "@cap-js/hana": "^1"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.9.0",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "build": "cds build && cds deploy --to hana",
+    "watch": "cds watch --profile hybrid"
+  },
+  "cds": {
+    "sql": {
+      "native_hana_associations": false
+    },
+    "requires":{
+      "db":{
+        "kind":"hana"
+      }
+    }
+  }
+}

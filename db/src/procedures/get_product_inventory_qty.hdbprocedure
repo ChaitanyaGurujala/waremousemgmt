@@ -1,0 +1,14 @@
+PROCEDURE "get_product_inventory_qty" (
+    IN product_name NVARCHAR(100),
+    OUT available INTEGER
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+    -- Get available inventory quantity using product name
+    SELECT COALESCE(SUM(i.quantity), 0) INTO available
+    FROM "WAREHOUSE_INVENTORY" i
+    JOIN "WAREHOUSE_PRODUCTS" p ON i."PRODUCT_ID" = p."ID"
+    WHERE UPPER(p."NAME") = UPPER(:product_name);
+END

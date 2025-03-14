@@ -1,0 +1,15 @@
+ID,Name,Email,Phone,Address,createdAt,createdBy,modifiedAt,modifiedBy
+a4f6c8e0-2b4d-4e6f-8a0c-2d4e6f8a0c2d,Acme Supply Co.,info@acmesupply.example,+12025551001,123 Industry Way Detroit MI 48201,2025-01-10T08:00:00Z,admin,2025-01-10T08:00:00Z,admin
+b5a7d9f1-3c5e-5f7a-9b1d-3e5f7a9b1d3e,GlobalTech Industries,contact@globaltech.example,+12025551002,456 Tech Park San Jose CA 95113,2025-01-10T09:00:00Z,admin,2025-01-10T09:00:00Z,admin
+c6b8e0a2-4d6f-6a8b-0c2e-4f6a8b0c2e4f,Midwest Distribution,sales@midwest.example,+12025551003,789 Warehouse Blvd Chicago IL 60007,2025-01-10T10:00:00Z,admin,2025-01-10T10:00:00Z,admin
+d7c9f1b3-5e7a-7b9c-1d3f-5a7b9c1d3f5a,Pacific Trading Co.,orders@pacifictrading.example,+12025551004,101 Harbor Drive Seattle WA 98101,2025-01-10T11:00:00Z,admin,2025-01-10T11:00:00Z,admin
+e8d0a2c4-6f8b-8c0d-2e4a-6b8c0d2e4a6b,Eastern Imports Ltd.,info@easternimports.example,+12025551005,202 Shipping Lane Boston MA 02110,2025-01-10T12:00:00Z,admin,2025-01-10T12:00:00Z,admin
+f9e1b3d5-7a9c-9d1e-3f5b-7c9d1e3f5b7c,Southern Manufacturing,contact@southernmfg.example,+12025551006,303 Production Ave Atlanta GA 30301,2025-01-10T13:00:00Z,admin,2025-01-10T13:00:00Z,admin
+a0f2c4e6-8b0d-0e2f-4a6c-8b0d2e4a6c8b,Western Electronics,sales@westernelec.example,+12025551007,404 Circuit Road Phoenix AZ 85001,2025-01-10T14:00:00Z,admin,2025-01-10T14:00:00Z,admin
+b1a3d5f7-9c1e-1f3a-5b7d-9c1e3f5b7d9c,Mountain Goods,orders@mountaingoods.example,+12025551008,505 Alpine Street Denver CO 80014,2025-01-10T15:00:00Z,admin,2025-01-10T15:00:00Z,admin
+c2b4e6f8-0d2f-2a4b-6c8e-0d2f4a6c8e0d,Coastal Suppliers,info@coastalsuppliers.example,+12025551009,606 Shoreline Pkwy Miami FL 33101,2025-01-11T08:00:00Z,admin,2025-01-11T08:00:00Z,admin
+d3c5f7a9-1e3a-3b5c-7d9f-1e3a5b7d9f1e,Central Logistics,contact@centrallogistics.example,+12025551010,707 Transit Center Dallas TX 75201,2025-01-11T09:00:00Z,admin,2025-01-11T09:00:00Z,admin
+e4d6a8b0-2f4b-4c6d-8e0a-2f4b6c8e0a2f,Northern Tools,sales@northerntools.example,+12025551011,808 Equipment Plaza Minneapolis MN 55401,2025-01-11T10:00:00Z,admin,2025-01-11T10:00:00Z,admin
+f5e7b9c1-3a5d-5d7e-9f1b-3a5d7e9f1b3a,Valley Components,orders@valleycomp.example,+12025551012,909 Assembly Road Portland OR 97204,2025-01-11T11:00:00Z,admin,2025-01-11T11:00:00Z,admin
+a6f8c0d2-4b6e-6e8a-0c2d-4b6e8a0c2d4b,Metro Supplies,info@metrosupplies.example,+12025551013,111 Urban Circle New York NY 10007,2025-01-11T12:00:00Z,admin,2025-01-11T12:00:00Z,admin
+b7a9d1e3-5c7f-7f9b-1d3e-5c7f9b1d3e5c,Plains Distribution,contact@plainsdist.example,+12025551014,222 Prairie Drive Omaha NE 68102,2025-01-11T13:00:00Z,admin,2025-01-11T13:00:00Z,admin

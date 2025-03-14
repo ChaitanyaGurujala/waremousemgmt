@@ -1,0 +1,21 @@
+ID,Name,SKU,Description,Price,UnitPrice,createdAt,createdBy,modifiedAt,modifiedBy
+b8a1e4c7-9d2f-4a6b-8c0d-2e4f6a8c0d2e,Premium Office Chair,CHR-001,Ergonomic office chair with lumbar support and adjustable height,249.99,249.99,2025-01-05T08:00:00Z,admin,2025-01-05T08:00:00Z,admin
+c9b2f5d8-0e3a-5b7c-9d1e-3f5a7b9d1e3f,Standard Desk,DSK-001,Standard workplace desk with cable management system,399.99,399.99,2025-01-05T08:30:00Z,admin,2025-01-05T08:30:00Z,admin
+d0c3a6e9-1f4b-6c8d-0e2f-4a6b0c8d2e4f,Monitor Stand,STD-001,Adjustable monitor stand with cable organization,49.99,49.99,2025-01-05T09:00:00Z,admin,2025-01-05T09:00:00Z,admin
+e1d4b7f0-2a5c-7d9e-1f3a-5b7c1d9e3f5a,Ergonomic Keyboard,KBD-001,Wireless ergonomic keyboard with wrist support,89.99,89.99,2025-01-05T09:30:00Z,admin,2025-01-05T09:30:00Z,admin
+f2e5c8a1-3b6d-8e0f-2a4b-6c8e0f2a4b6c,Wireless Mouse,MOU-001,Precision wireless mouse with adjustable DPI,59.99,59.99,2025-01-05T10:00:00Z,admin,2025-01-05T10:00:00Z,admin
+a3f6d9b2-4c7e-9f1a-3b5c-7d9f1a3b5c7d,Desk Lamp,LMP-001,LED desk lamp with adjustable brightness and color temperature,39.99,39.99,2025-01-05T10:30:00Z,admin,2025-01-05T10:30:00Z,admin
+b4a7e0c3-5d8f-0a2b-4c6d-8e0a2b4c6d8e,File Cabinet,CAB-001,3-drawer file cabinet with lock,129.99,129.99,2025-01-05T11:00:00Z,admin,2025-01-05T11:00:00Z,admin
+c5b8f1d4-6e9a-1b3c-5d7e-9f1b3c5d7e9f,Desk Organizer,ORG-001,Multi-compartment desk organizer for office supplies,24.99,24.99,2025-01-05T11:30:00Z,admin,2025-01-05T11:30:00Z,admin
+d6c9a2e5-7f0b-2c4d-6e8f-0a2c4d6e8f0a,Whiteboard,WBD-001,Wall-mounted whiteboard with aluminum frame 36x24,79.99,79.99,2025-01-05T12:00:00Z,admin,2025-01-05T12:00:00Z,admin
+e7d0b3f6-8a1c-3d5e-7f9a-1b3d5e7f9a1b,Bookshelf,BSF-001,5-shelf bookcase with adjustable shelves,149.99,149.99,2025-01-05T12:30:00Z,admin,2025-01-05T12:30:00Z,admin
+f8e1c4a7-9b2d-4e6f-8a0b-2c4e6f8a0b2c,Premium Notebook,NTB-001,Premium hardcover notebook with 192 lined pages,14.99,14.99,2025-01-05T13:00:00Z,admin,2025-01-05T13:00:00Z,admin
+a9f2d5b8-0c3e-5f7a-9b1c-3d5f7a9b1c3d,Ballpoint Pen Set,PEN-001,Set of 12 ballpoint pens - black blue red,8.99,8.99,2025-01-05T13:30:00Z,admin,2025-01-05T13:30:00Z,admin
+b0a3e6c9-1d4f-6a8b-0c2d-4e6a8b0c2d4e,Executive Chair,CHR-002,Premium executive chair with leather upholstery,349.99,349.99,2025-01-05T14:00:00Z,admin,2025-01-05T14:00:00Z,admin
+c1b4f7d0-2e5a-7b9c-1d3e-5f7b9c1d3e5f,Standing Desk,DSK-002,Motorized standing desk with height memory settings,599.99,599.99,2025-01-05T14:30:00Z,admin,2025-01-05T14:30:00Z,admin
+d2c5a8e1-3f6b-8c0d-2e4f-6a8c0d2e4f6a,Dual Monitor Arm,ARM-001,Adjustable dual monitor mounting arm,129.99,129.99,2025-01-05T15:00:00Z,admin,2025-01-05T15:00:00Z,admin
+e3d6b9f2-4a7c-9d1e-3f5a-7b9d1e3f5a7b,Conference Table,TBL-001,Oval conference table for 8 people,799.99,799.99,2025-01-06T08:00:00Z,admin,2025-01-06T08:00:00Z,admin
+f4e7c0a3-5b8d-0e2f-4a6b-8c0e2f4a6b8c,Reception Desk,DSK-003,L-shaped reception desk with transaction counter,899.99,899.99,2025-01-06T08:30:00Z,admin,2025-01-06T08:30:00Z,admin
+a5f8d1b4-6c9e-1f3a-5b7c-9d1f3a5b7c9d,Visitor Chair,CHR-003,Stackable visitor chair with padded seat,99.99,99.99,2025-01-06T09:00:00Z,admin,2025-01-06T09:00:00Z,admin
+b6a9e2c5-7d0f-2a4b-6c8e-0f2a4b6c8e0f,Lounge Sofa,SOF-001,3-seater office lounge sofa,699.99,699.99,2025-01-06T09:30:00Z,admin,2025-01-06T09:30:00Z,admin
+c7b0f3d6-8e1a-3b5c-7d9f-1a3b5c7d9f1a,Storage Cabinet,CAB-002,Lockable storage cabinet with adjustable shelves,249.99,249.99,2025-01-06T10:00:00Z,admin,2025-01-06T10:00:00Z,admin
