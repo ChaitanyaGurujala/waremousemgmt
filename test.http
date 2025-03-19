@@ -1,11 +1,54 @@
 ###
 GET http://localhost:4004/warehouse/getProductAvailability(productId='c7b0f3d6-8e1a-3b5c-7d9f-1a3b5c7d9f1a')
 
+
 ###
-POST http://localhost:4004/warehouse/test2
+
+GET http://localhost:4004/warehouse/getInventoryQuantityByName(productName='Premium Office Chair')
+
+###
+GET http://localhost:4004/warehouse/getProductQuantitiesByName(productName='Premium Office Chair')
+
+###
+ // Creation of Sales Order
+POST http://localhost:4004/warehouse/createSalesOrderByNames
 Content-Type: application/json
 
 {
-    "name":"AASD",
-    "quantity": 9
+  "customerName": "John Smith",
+  "items": [
+    {
+      "productName": "Premium Office Chair",
+      "quantity": 2
+    },
+    {
+      "productName": "Standard Desk",
+      "quantity": 1
+    }
+  ],
+  "needByDate": "2025-03-28",
+  "currency": "USD"
 }
+
+
+###
+// For Cancellation of Sales Order
+POST http://localhost:4004/warehouse/updateSalesOrderStatus
+Content-Type: application/json
+
+{
+  "salesOrderId": "d8591149-9779-4c79-b0d3-7bb0148af7e1",
+  "status": "Cancelled"
+} 
+
+
+
+###
+// For Shipped Sales Order
+POST http://localhost:4004/warehouse/updateSalesOrderStatus
+Content-Type: application/json
+
+{
+  "salesOrderId": "d8591149-9779-4c79-b0d3-7bb0148af7e1",
+  "status": "Shipped"
+} 

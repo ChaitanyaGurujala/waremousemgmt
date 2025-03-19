@@ -22,6 +22,7 @@ entity OrderStatusList : CodeList {
 }
 
 // Customers Entity
+@cds.persistence.exists
 entity Customers : cuid, managed {
     @title: 'Customer Name'
     name         : String(100) @mandatory;
@@ -40,6 +41,7 @@ entity Customers : cuid, managed {
 }
 
 // Vendors Entity
+@cds.persistence.exists
 entity Vendors : cuid, managed {
     @title: 'Vendor Name'
     name         : String(100) @mandatory;
@@ -58,6 +60,7 @@ entity Vendors : cuid, managed {
 }
 
 // Products Entity
+@cds.persistence.exists
 entity Products : cuid, managed {
     @title: 'Product Name'
     name         : String(100) @mandatory;
@@ -84,6 +87,7 @@ entity Products : cuid, managed {
 }
 
 // Inventory Entity
+@cds.persistence.exists
 entity Inventory : cuid, managed {
     @title: 'Product'
     product              : Association to one Products;
@@ -96,6 +100,7 @@ entity Inventory : cuid, managed {
 }
 
 // Purchase Orders Entity
+@cds.persistence.exists
 entity PurchaseOrders : cuid, managed {
     @title: 'Vendor'
     vendor          : Association to one Vendors;
@@ -120,6 +125,7 @@ entity PurchaseOrders : cuid, managed {
 }
 
 // Purchase Order Items Entity
+@cds.persistence.exists
 entity PurchaseOrderItems : cuid, managed {
     @title: 'Purchase Order'
     purchaseOrder   : Association to one PurchaseOrders;
@@ -141,6 +147,7 @@ entity PurchaseOrderItems : cuid, managed {
 }
 
 // Sales Orders Entity
+@cds.persistence.exists
 entity SalesOrders : cuid, managed {
     @title: 'Customer'
     customer        : Association to one Customers;
@@ -165,6 +172,7 @@ entity SalesOrders : cuid, managed {
 }
 
 // Sales Order Items Entity
+@cds.persistence.exists
 entity SalesOrderItems : cuid, managed {
     @title: 'Sales Order'
     salesOrder      : Association to one SalesOrders;
@@ -183,16 +191,4 @@ entity SalesOrderItems : cuid, managed {
     
     @title: 'Currency'
     currency        : CurrencyT;
-}
-
-entity test  {
-    key id : UUID;
-    name : String(32);
-    quantity: Integer;
-}
-
-entity test2 : cuid {
-    // key id : UUID;
-    name : String(32);
-    quantity: Integer;
 }

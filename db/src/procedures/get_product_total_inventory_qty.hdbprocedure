@@ -1,0 +1,32 @@
+PROCEDURE get_product_total_inventory_qty (
+    IN product_name NVARCHAR(100),
+    OUT inventory_qty INTEGER,
+    OUT sales_order_qty INTEGER,
+    OUT purchase_order_qty INTEGER
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+    -- Get inventory quantity
+    SELECT COALESCE(SUM(i.quantity), 0) INTO inventory_qty
+    FROM "WAREHOUSE_INVENTORY" i
+    JOIN "WAREHOUSE_PRODUCTS" p ON i."PRODUCT_ID" = p."ID"
+    WHERE UPPER(p."NAME") = UPPER(:product_name);
+
+    -- Get sales order quantity only for PENDING sales orders
+    SELECT COALESCE(SUM(soi.quantity), 0) INTO sales_order_qty 
+    FROM "WAREHOUSE_SALESORDERITEMS" soi  
+    JOIN "WAREHOUSE_PRODUCTS" p ON soi."PRODUCT_ID" = p."ID"
+    JOIN "WAREHOUSE_SALESORDERS" so ON soi."SALESORDER_ID" = so."ID"
+    WHERE UPPER(p."NAME") = UPPER(:product_name)
+    AND so."STATUS_CODE" = 'Pending';
+
+    -- Get purchase order quantity only for PENDING purchase orders
+    SELECT COALESCE(SUM(poi.quantity), 0) INTO purchase_order_qty
+    FROM "WAREHOUSE_PURCHASEORDERITEMS" poi 
+    JOIN "WAREHOUSE_PRODUCTS" p ON poi."PRODUCT_ID" = p."ID"
+    JOIN "WAREHOUSE_PURCHASEORDERS" po ON poi."PURCHASEORDER_ID" = po."ID"
+    WHERE UPPER(p."NAME") = UPPER(:product_name)
+    AND po."STATUS_CODE" = 'Pending';
+END

@@ -22,9 +22,6 @@
     "watch": "cds watch --profile hybrid"
   },
   "cds": {
-    "sql": {
-      "native_hana_associations": false
-    },
     "requires":{
       "db":{
         "kind":"hana"
