@@ -192,3 +192,65 @@ entity SalesOrderItems : cuid, managed {
     @title: 'Currency'
     currency        : CurrencyT;
 }
+
+entity ProductPerformanceView as 
+    select from Products as p {
+        p.ID,
+        p.name,
+        p.sku,
+        p.price,
+        p.currency,
+        
+        // Current inventory levels
+        (select sum(quantity) from Inventory where product.ID = p.ID) as currentStock,
+        
+        // Pending sales (items in pending sales orders)
+        (select sum(soi.quantity) 
+          from SalesOrderItems as soi
+          join SalesOrders as so on so.ID = soi.salesOrder.ID
+          where soi.product.ID = p.ID and so.status.code = 'Pending') as pendingSales,
+        
+        // Pending purchases (items in pending purchase orders)
+        (select sum(poi.quantity) 
+          from PurchaseOrderItems as poi
+          join PurchaseOrders as po on po.ID = poi.purchaseOrder.ID
+          where poi.product.ID = p.ID and po.status.code = 'Pending') as pendingPurchases,
+        
+        // Completed sales in last 30 days
+        (select count(distinct so.ID) 
+          from SalesOrderItems as soi
+          join SalesOrders as so on so.ID = soi.salesOrder.ID
+          where soi.product.ID = p.ID 
+            and so.status.code = 'Received'
+            and so.deliveryDate > ADD_DAYS(CURRENT_DATE, -30)) as recentSalesCount,
+            
+        // Total quantity sold in last 30 days
+        (select sum(soi.quantity) 
+          from SalesOrderItems as soi
+          join SalesOrders as so on so.ID = soi.salesOrder.ID
+          where soi.product.ID = p.ID 
+            and so.status.code = 'Received'
+            and so.deliveryDate > ADD_DAYS(CURRENT_DATE, -30)) as recentSalesQuantity,
+            
+        // Project future stock level (current + pending purchases - pending sales)
+        (select sum(quantity) from Inventory where product.ID = p.ID) + 
+        (select coalesce(sum(poi.quantity), 0) 
+          from PurchaseOrderItems as poi
+          join PurchaseOrders as po on po.ID = poi.purchaseOrder.ID
+          where poi.product.ID = p.ID and po.status.code = 'Pending') -
+        (select coalesce(sum(soi.quantity), 0) 
+          from SalesOrderItems as soi
+          join SalesOrders as so on so.ID = soi.salesOrder.ID
+          where soi.product.ID = p.ID and so.status.code = 'Pending') as projectedStock
+    };
+
+    @cds.persistence.exists // hdb view entity definition
+    Entity inventory_status_by_location {
+        key LOCATION: String(100)  @title: 'LOCATION' ; 
+        TOTAL_ITEMS: Integer64 not null  @title: 'TOTAL_ITEMS' ; 
+        TOTAL_QUANTITY: Integer  @title: 'TOTAL_QUANTITY' ; 
+        LOW_STOCK_ITEMS: Integer not null  @title: 'LOW_STOCK_ITEMS' ; 
+        OUT_OF_STOCK_ITEMS: Integer not null  @title: 'OUT_OF_STOCK_ITEMS' ; 
+        AVG_QUANTITY: Decimal(16, 6)  @title: 'AVG_QUANTITY' ; 
+        REPRESENTATIVE_PRODUCT: String(100)  @title: 'REPRESENTATIVE_PRODUCT' ; 
+}

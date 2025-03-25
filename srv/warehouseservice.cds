@@ -3,6 +3,7 @@ using {warehouse as db} from '../db/data-model';
 service WarehouseService @(path: '/warehouse') {
     entity Customers                   as projection on db.Customers;
     entity Vendors                     as projection on db.Vendors;
+    @cds.redirection.target 
     entity Products                    as projection on db.Products;
 
     @cds.redirection.target
@@ -12,9 +13,18 @@ service WarehouseService @(path: '/warehouse') {
     entity SalesOrders                 as projection on db.SalesOrders;
     entity SalesOrderItems             as projection on db.SalesOrderItems;
     entity OrderStatusList             as projection on db.OrderStatusList;
+    @readonly // AnalyticalView using CDS 
+    entity ProductPerformance as projection on db.ProductPerformanceView {
+        *,
+        currentStock       : Integer,
+        pendingSales       : Integer,
+        pendingPurchases   : Integer,
+        recentSalesCount   : Integer,
+        recentSalesQuantity: Integer,
+        projectedStock     : Integer
+    };
 
-
-    @readonly
+    @readonly //Simple View using CDS
     entity InventoryWithProductDetails as
         select from db.Inventory {
             ID,
@@ -26,6 +36,9 @@ service WarehouseService @(path: '/warehouse') {
             product.price    as product_Price,
             product.currency as product_Currency
         };
+
+    @readonly //hdb view artifact created and exposed
+    entity InventoryStatusByLocation as projection on db.inventory_status_by_location;
 
     function getInventoryQuantityByName(productName: String) returns {
         productName: String;
@@ -73,19 +86,4 @@ service WarehouseService @(path: '/warehouse') {
     message: String;
     deliveryDate: Date;
     itemCount: Integer
-};
-
-     // Function to update sales order status using stored procedure
-    // action updateSalesOrderStatusProcedure(
-    //     salesOrderId: String,
-    //     status: String
-    // ) returns {
-    //     salesOrderId: String;
-    //     status: String;
-    //     message: String;
-    //     timestamp: Timestamp;
-    //     deliveryDate: Date
-    // };
-    
-}
-
+}};

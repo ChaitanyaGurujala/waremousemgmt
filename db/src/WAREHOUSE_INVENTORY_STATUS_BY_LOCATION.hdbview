@@ -1,0 +1,33 @@
+VIEW "WAREHOUSE_INVENTORY_STATUS_BY_LOCATION" AS
+WITH LocationProductRanks AS (
+    SELECT 
+        "WAREHOUSELOCATION",
+        "PRODUCT_ID",
+        p."NAME",
+        ROW_NUMBER() OVER (PARTITION BY "WAREHOUSELOCATION" ORDER BY p."NAME") as product_rank
+    FROM "WAREHOUSE_INVENTORY" i
+    JOIN "WAREHOUSE_PRODUCTS" p ON i."PRODUCT_ID" = p."ID"
+)
+SELECT 
+    i."WAREHOUSELOCATION" as location,
+    COUNT(DISTINCT i."ID") as total_items,
+    SUM(i."QUANTITY") as total_quantity,
+    
+    -- Count of products with low stock (less than 10 units)
+    SUM(CASE WHEN i."QUANTITY" < 10 THEN 1 ELSE 0 END) as low_stock_items,
+    
+    -- Count of products with zero stock
+    SUM(CASE WHEN i."QUANTITY" = 0 THEN 1 ELSE 0 END) as out_of_stock_items,
+    
+    -- Average quantity per product at this location
+    AVG(i."QUANTITY") as avg_quantity,
+    
+    -- First product found at this location (by alphabetical order)
+    (SELECT "NAME" 
+     FROM LocationProductRanks
+     WHERE "WAREHOUSELOCATION" = i."WAREHOUSELOCATION"
+     AND product_rank = 1) as representative_product
+    
+FROM "WAREHOUSE_INVENTORY" i
+GROUP BY i."WAREHOUSELOCATION"
+ORDER BY total_quantity DESC
