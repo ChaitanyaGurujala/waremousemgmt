@@ -1,7 +1,7 @@
 using {warehouse as db} from '../db/data-model';
 
 service WarehouseService @(path: '/warehouse') {
-    entity Customers                   as projection on db.Customers;
+   entity Customers                   as projection on db.Customers;
     entity Vendors                     as projection on db.Vendors;
     @cds.redirection.target 
     entity Products                    as projection on db.Products;

@@ -11,7 +11,8 @@
     "cli": "^1.0.1",
     "express": "^4",
     "hana": "^0.0.2",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.9.0",
@@ -27,7 +28,8 @@
     "requires": {
       "db": {
         "kind": "hana"
-      }
+      },
+      "auth": "mocked"
     }
   }
 }
