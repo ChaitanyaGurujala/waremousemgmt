@@ -1,7 +1,15 @@
 using {warehouse as db} from '../db/data-model';
 
+@requires: 'authenticated-user'
 service WarehouseService @(path: '/warehouse') {
-   entity Customers                   as projection on db.Customers;
+    
+    @(
+  insertable: {grant: ['Write']},
+  readable: {grant:['Read']},
+  deletable: {grant: ['Admin']})
+  entity Customers                   as projection on db.Customers;
+    
+
     entity Vendors                     as projection on db.Vendors;
     @cds.redirection.target 
     entity Products                    as projection on db.Products;
@@ -51,7 +59,7 @@ service WarehouseService @(path: '/warehouse') {
         salesOrderQuantity: Integer;
         purchaseOrderQuantity: Integer;
     };
-
+    @(requires:{grant:['Write']})
     action createSalesOrderByNames(
         customerName: String,
         items: many {

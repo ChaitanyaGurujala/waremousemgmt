@@ -29,7 +29,32 @@
       "db": {
         "kind": "hana"
       },
-      "auth": "mocked"
+      "auth": {
+        "kind": "basic",
+        "users": {
+          "reader": {
+            "password": "password",
+            "roles": [
+              "Read"
+            ]
+          },
+          "editor": {
+            "password": "password",
+            "roles": [
+              "Read",
+              "Write"
+            ]
+          },
+          "admin": {
+            "password": "admin",
+            "roles": [
+              "Read",
+              "Write",
+              "Admin"
+            ]
+          }
+        }
+      }
     }
   }
 }
