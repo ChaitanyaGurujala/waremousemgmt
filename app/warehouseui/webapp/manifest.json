@@ -1,0 +1,202 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "warehouseui",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.17.0",
+      "toolsId": "6ad4b0e2-c0ac-40c8-9933-b07528f8071a"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/warehouse/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "warehouseflp-warehouse_actions": {
+          "semanticObject": "warehouseflp",
+          "action": "warehouse_actions",
+          "title": "{{warehouseflp-warehouse_actions.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.134.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "warehouseui.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "warehouseui.view",
+        "async": true,
+        "viewPath": "warehouseui.view"
+      },
+      "routes": [
+    {
+        "name": "dashboard",
+        "pattern": "",
+        "target": [
+            "Dashboard"
+        ]
+    },
+    {
+        "name": "RouteS1",
+        "pattern": "main",
+        "target": [
+            "TargetS1"
+        ]
+    },
+    {
+        "name": "productPerformance",
+        "pattern": "productPerformance",
+        "target": [
+            "ProductPerformance"
+        ]
+    },
+    {
+        "name": "inventoryLookup",
+        "pattern": "inventoryLookup",
+        "target": [
+            "InventoryLookup"
+        ]
+    },
+    {
+        "name": "productDetail",
+        "pattern": "product/{productId}",
+        "target": [
+            "ProductDetail"
+        ]
+    },
+    {
+      "name": "inventoryByLocation",
+      "pattern": "inventoryByLocation",
+      "target": [
+          "InventoryByLocation"
+      ]
+  },
+  {
+      "name": "locationDetail",
+      "pattern": "location/{location}",
+      "target": [
+          "LocationDetail"
+      ]
+  }
+],
+"targets": {
+    "Dashboard": {
+        "viewId": "Dashboard",
+        "viewName": "Dashboard"
+    },
+    "TargetS1": {
+        "viewId": "S1",
+        "viewName": "S1"
+    },
+    "ProductPerformance": {
+        "viewId": "ProductPerformance",
+        "viewName": "ProductPerformance"
+    },
+    "InventoryLookup": {
+        "viewId": "InventoryLookup",
+        "viewName": "InventoryLookup"
+    },
+    "ProductDetail": {
+        "viewId": "ProductDetail",
+        "viewName": "ProductDetail"
+    },
+    "InventoryByLocation": {
+    "viewId": "InventoryByLocation",
+    "viewName": "InventoryByLocation"
+},
+"LocationDetail": {
+    "viewId": "LocationDetail",
+    "viewName": "LocationDetail"
+}
+}
+    },
+    "rootView": {
+      "viewName": "warehouseui.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "managed_approuter"
+  }
+}

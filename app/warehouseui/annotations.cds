@@ -1,0 +1,1 @@
+using WarehouseService as service from '../../srv/warehouseservice';

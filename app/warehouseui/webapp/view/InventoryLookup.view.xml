@@ -1,0 +1,77 @@
+<mvc:View
+    controllerName="warehouseui.controller.InventoryLookup"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form">
+    
+    <Page title="Inventory Lookup" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <form:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                <form:content>
+                    <Label text="Product Name" />
+                    <Input
+                        id="productNameInput"
+                        showValueHelp="true"
+                        valueHelpRequest=".onValueHelpRequest"
+                        valueHelpOnly="false"
+                        value="{viewModel>/productName}"
+                        submit=".onSubmit" />
+                        
+                    <Button 
+                        text="Search" 
+                        type="Emphasized" 
+                        press=".onSearch" 
+                        class="sapUiSmallMarginBegin" />
+                </form:content>
+            </form:SimpleForm>
+            
+            <Panel
+                headerText="Product Quantities"
+                expandable="false"
+                expanded="true"
+                visible="{= !!${viewModel>/productQuantities} }">
+                <form:SimpleForm
+                    editable="false"
+                    layout="ResponsiveGridLayout">
+                    <form:content>
+                        <Label text="Product Name" />
+                        <Text text="{viewModel>/productQuantities/productName}" />
+                        
+                        <Label text="Inventory Quantity" />
+                        <ObjectStatus
+                            text="{viewModel>/productQuantities/inventoryQuantity}"
+                            state="{= ${viewModel>/productQuantities/inventoryQuantity} > 20 ? 'Success' : ${viewModel>/productQuantities/invQuantity} > 10 ? 'Warning' : 'Error' }" />
+                        
+                        <Label text="Sales Order Quantity" />
+                        <Text text="{viewModel>/productQuantities/salesOrderQuantity}" />
+                        
+                        <Label text="Purchase Order Quantity" />
+                        <Text text="{viewModel>/productQuantities/purchaseOrderQuantity}" />
+                        
+                        <Label text="Projected Stock" />
+                        <ObjectStatus
+                            text="{= ${viewModel>/productQuantities/invQuantity} - ${viewModel>/productQuantities/salesOrderQuantity} + ${viewModel>/productQuantities/purchaseOrderQuantity} }"
+                            state="{= (${viewModel>/productQuantities/invQuantity} - ${viewModel>/productQuantities/salesOrderQuantity} + ${viewModel>/productQuantities/purchaseOrderQuantity}) > 20 ? 'Success' : (${viewModel>/productQuantities/invQuantity} - ${viewModel>/productQuantities/salesOrderQuantity} + ${viewModel>/productQuantities/purchaseOrderQuantity}) > 10 ? 'Warning' : 'Error' }" />
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

@@ -17,12 +17,17 @@
   "devDependencies": {
     "@cap-js/cds-types": "^0.9.0",
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^8"
+    "@sap/cds-dk": "^8",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.29"
   },
   "scripts": {
     "start": "cds-serve",
-    "build": "cds build && cds deploy --to hana",
-    "watch": "cds watch --profile hybrid"
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "watch": "cds watch --profile hybrid",
+    "watch-warehouseui": "cds watch --open warehouseui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy warehousemgmt --delete-services --delete-service-keys --delete-service-brokers",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "cds": {
     "requires": {
@@ -30,7 +35,7 @@
         "kind": "hana"
       },
       "auth": {
-        "kind": "basic",
+        "kind": "mocked",
         "users": {
           "reader": {
             "password": "password",

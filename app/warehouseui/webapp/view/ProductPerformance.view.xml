@@ -1,0 +1,168 @@
+<mvc:View
+    controllerName="warehouseui.controller.ProductPerformance"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+>
+    <Page
+        title="Product Performance"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+    >
+        <subHeader>
+            <Toolbar>
+                <SearchField
+                    width="50%"
+                    placeholder="Search by Product Name or SKU"
+                    search=".onSearch"
+                />
+                <ToolbarSpacer />
+                <Button
+                    icon="sap-icon://filter"
+                    tooltip="Filter"
+                    press=".onOpenFilter"
+                />
+                <Button
+                    icon="sap-icon://sort"
+                    tooltip="Sort"
+                    press=".onOpenSort"
+                />
+            </Toolbar>
+        </subHeader>
+
+        <content>
+            <!-- Replace GridList with a standard List or Table -->
+            <Panel headerText="Product Performance Overview">
+                <layout:VerticalLayout width="100%">
+                    <layout:HorizontalLayout
+                        allowWrapping="true"
+                        content="{/ProductPerformance}"
+                    >
+                        <VBox
+                            class="sapUiSmallMargin"
+                            width="300px"
+                            height="350px"
+                        >
+                            <HBox justifyContent="SpaceBetween">
+                                <Title
+                                    text="{name}"
+                                    level="H2"
+                                />
+                                <ObjectStatus
+                                    text="{= ${currentStock} > 20 ? 'Good Stock' : ${currentStock} > 10 ? 'Low Stock' : 'Critical Stock'}"
+                                    state="{= ${currentStock} > 20 ? 'Success' : ${currentStock} > 10 ? 'Warning' : 'Error'}"
+                                />
+                            </HBox>
+                            <Text
+                                text="SKU: {sku}"
+                                class="sapUiTinyMarginTop"
+                            />
+                            <Text
+                                text="{
+    parts: [
+        {path: 'price'},
+        {path: 'currency'}
+    ],
+    type: 'sap.ui.model.type.Currency',
+    formatOptions: {showMeasure: true}
+}"
+                                class="sapUiTinyMarginTop"
+                            />
+
+                            <HBox
+                                class="sapUiSmallMarginTop"
+                                justifyContent="SpaceBetween"
+                            >
+                                <VBox>
+                                    <Label
+                                        text="Current Stock"
+                                        design="Bold"
+                                    />
+                                    <Text text="{currentStock}" />
+                                </VBox>
+                                <VBox>
+                                    <Label
+                                        text="Pending Sales"
+                                        design="Bold"
+                                    />
+                                    <Text text="{pendingSales}" />
+                                </VBox>
+                                <VBox>
+                                    <Label
+                                        text="Pending Purchases"
+                                        design="Bold"
+                                    />
+                                    <Text text="{pendingPurchases}" />
+                                </VBox>
+                            </HBox>
+
+                            <HBox
+                                class="sapUiSmallMarginTop"
+                                justifyContent="SpaceBetween"
+                            >
+                                <VBox>
+                                    <Label
+                                        text="Recent Sales Count"
+                                        design="Bold"
+                                    />
+                                    <Text text="{recentSalesCount}" />
+                                </VBox>
+                                <VBox>
+                                    <Label
+                                        text="Recent Sales Quantity"
+                                        design="Bold"
+                                    />
+                                    <Text text="{recentSalesQuantity}" />
+                                </VBox>
+                                <VBox>
+                                    <Label
+                                        text="Projected Stock"
+                                        design="Bold"
+                                    />
+                                    <ObjectNumber
+                                        number="{projectedStock}"
+                                        state="{= ${projectedStock} > 20 ? 'Success' : ${projectedStock} > 10 ? 'Warning' : 'Error'}"
+                                    />
+                                </VBox>
+                            </HBox>
+
+                            <ProgressIndicator
+                                class="sapUiSmallMarginTop"
+                                percentValue="{= ${currentStock} / (${currentStock} + ${pendingSales}) * 100}"
+                                displayValue="{currentStock} of {= ${currentStock} + ${pendingSales}}"
+                                state="{= ${currentStock} > 20 ? 'Success' : ${currentStock} > 10 ? 'Warning' : 'Error'}"
+                            />
+
+                            <HBox class="sapUiSmallMarginTop">
+                                <Button
+                                    text="Order More"
+                                    icon="sap-icon://add"
+                                    press=".onOrderMore"
+                                />
+                                <Button
+                                    text="View Details"
+                                    icon="sap-icon://inspect"
+                                    press=".onViewDetails"
+                                    class="sapUiTinyMarginBegin"
+                                />
+                            </HBox>
+                        </VBox>
+                    </layout:HorizontalLayout>
+                </layout:VerticalLayout>
+            </Panel>
+        </content>
+
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button
+                    text="Export to Excel"
+                    icon="sap-icon://excel-attachment"
+                    press=".onExport"
+                />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

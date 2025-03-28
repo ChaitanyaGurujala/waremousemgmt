@@ -1,0 +1,61 @@
+<mvc:View
+    controllerName="warehouseui.controller.InventoryByLocation"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout">
+    
+    <Page title="Inventory Status by Location" showNavButton="true" navButtonPress=".onNavBack">
+        <subHeader>
+            <Toolbar>
+                <SearchField width="50%" placeholder="Search by Location" search=".onSearch" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://excel-attachment" tooltip="Export to Excel" press=".onExport" />
+            </Toolbar>
+        </subHeader>
+        
+        <content>
+            <Table
+                id="inventoryTable"
+                items="{/InventoryStatusByLocation}"
+                alternateRowColors="true"
+                sticky="ColumnHeaders,HeaderToolbar"
+                class="sapUiSmallMargin">
+                <columns>
+                    <Column>
+                        <Text text="Location" />
+                    </Column>
+                    <Column hAlign="Right">
+                        <Text text="Total Quantity" />
+                    </Column>
+                    <Column hAlign="Right">
+                        <Text text="Available Quantity" />
+                    </Column>
+                    <Column hAlign="Right">
+                        <Text text="Reserved Quantity" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Status" />
+                    </Column>
+                    <Column>
+                        <Text text="Details" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press=".onLocationPress">
+                        <cells>
+                            <Text text="{location}" />
+                            <ObjectNumber number="{total_quantity}" state="{= ${total_quantity} > 200 ? 'Success' : ${total_quantity} > 100 ? 'Warning' : 'Error'}" />
+                            <ObjectNumber number="{available_quantity}" />
+                            <ObjectNumber number="{reserved_quantity}" />
+                            <ObjectStatus 
+                                text="{= ${total_quantity} > 200 ? 'Good Stock' : ${total_quantity} > 100 ? 'Moderate Stock' : 'Low Stock'}"
+                                state="{= ${total_quantity} > 200 ? 'Success' : ${total_quantity} > 100 ? 'Warning' : 'Error'}" />
+                            <Button icon="sap-icon://show" press=".onViewLocationDetails" text="View Products" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

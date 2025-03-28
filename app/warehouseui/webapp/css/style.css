@@ -1,0 +1,8 @@
+/* Enter your custom styles here */
+
+.tileLayout {
+    float: left;
+    margin: 0.5rem;
+    width: 12rem;
+    height: 12rem;
+}

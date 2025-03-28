@@ -21,7 +21,7 @@ service WarehouseService @(path: '/warehouse') {
     entity SalesOrders                 as projection on db.SalesOrders;
     entity SalesOrderItems             as projection on db.SalesOrderItems;
     entity OrderStatusList             as projection on db.OrderStatusList;
-    @readonly // AnalyticalView using CDS 
+     // AnalyticalView using CDS 
     entity ProductPerformance as projection on db.ProductPerformanceView {
         *,
         currentStock       : Integer,
