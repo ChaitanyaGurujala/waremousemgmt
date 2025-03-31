@@ -28,12 +28,6 @@
                     <Column hAlign="Right">
                         <Text text="Total Quantity" />
                     </Column>
-                    <Column hAlign="Right">
-                        <Text text="Available Quantity" />
-                    </Column>
-                    <Column hAlign="Right">
-                        <Text text="Reserved Quantity" />
-                    </Column>
                     <Column hAlign="Center">
                         <Text text="Status" />
                     </Column>
@@ -44,13 +38,11 @@
                 <items>
                     <ColumnListItem type="Navigation" press=".onLocationPress">
                         <cells>
-                            <Text text="{location}" />
-                            <ObjectNumber number="{total_quantity}" state="{= ${total_quantity} > 200 ? 'Success' : ${total_quantity} > 100 ? 'Warning' : 'Error'}" />
-                            <ObjectNumber number="{available_quantity}" />
-                            <ObjectNumber number="{reserved_quantity}" />
+                            <Text text="{LOCATION}" />
+                            <ObjectNumber number="{TOTAL_QUANTITY}" state="{= ${TOTAL_QUANTITY} > 200 ? 'Success' : ${TOTAL_QUANTITY} > 100 ? 'Warning' : 'Error'}" />
                             <ObjectStatus 
-                                text="{= ${total_quantity} > 200 ? 'Good Stock' : ${total_quantity} > 100 ? 'Moderate Stock' : 'Low Stock'}"
-                                state="{= ${total_quantity} > 200 ? 'Success' : ${total_quantity} > 100 ? 'Warning' : 'Error'}" />
+                                text="{= ${TOTAL_QUANTITY} > 200 ? 'Good Stock' : ${TOTAL_QUANTITY} > 100 ? 'Moderate Stock' : 'Low Stock'}"
+                                state="{= ${TOTAL_QUANTITY} > 200 ? 'Success' : ${TOTAL_QUANTITY} > 100 ? 'Warning' : 'Error'}" />
                             <Button icon="sap-icon://show" press=".onViewLocationDetails" text="View Products" />
                         </cells>
                     </ColumnListItem>
