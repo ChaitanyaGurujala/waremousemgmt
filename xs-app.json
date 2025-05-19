@@ -1,0 +1,33 @@
+{
+    "welcomeFile": "index.html",
+    "authenticationMethod": "route",
+    "sessionTimeout": 30,
+    "routes": [
+      {
+        "source": "^/warehouse/(.*)$",
+        "target": "$1",
+        "destination": "warehouse-service",
+        "authenticationType": "xsuaa",
+        "csrfProtection": true
+      },
+      {
+        "source": "^/admin/(.*)$",
+        "target": "$1",
+        "destination": "warehouse-service",
+        "authenticationType": "xsuaa",
+        "scope": "$XSAPPNAME.Admin"
+      },
+      {
+        "source": "^/resources/(.*)$",
+        "target": "$1",
+        "localDir": "resources",
+        "authenticationType": "none"
+      },
+      {
+        "source": "^/(.*)$",
+        "target": "$1",
+        "localDir": "webapp",
+        "authenticationType": "xsuaa"
+      }
+    ]
+  }

@@ -1,0 +1,68 @@
+{
+  "xsappname": "warehousemgmt",
+  "tenant-mode": "dedicated",
+  "description": "Security profile for warehouse application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Read",
+      "description": "Read access to warehouse data"
+    },
+    {
+      "name": "$XSAPPNAME.Write",
+      "description": "Write access to warehouse data"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Administrative access"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Read-only access to warehouse data",
+      "scope-references": [
+        "$XSAPPNAME.Read"
+      ]
+    },
+    {
+      "name": "Editor",
+      "description": "Read and write access to warehouse data",
+      "scope-references": [
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Write"
+      ]
+    },
+    {
+      "name": "Administrator",
+      "description": "Full administrative access",
+      "scope-references": [
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Write",
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "Warehouse_Viewers",
+      "description": "Users who can view warehouse data",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "Warehouse_Editors",
+      "description": "Users who can create and modify warehouse data",
+      "role-template-references": [
+        "$XSAPPNAME.Editor"
+      ]
+    },
+    {
+      "name": "Warehouse_Administrators",
+      "description": "Users with administrative privileges",
+      "role-template-references": [
+        "$XSAPPNAME.Administrator"
+      ]
+    }
+  ]
+}

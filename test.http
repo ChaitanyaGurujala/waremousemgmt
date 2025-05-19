@@ -3,6 +3,10 @@ GET http://localhost:4004/warehouse/getProductAvailability(productId='c7b0f3d6-8
 
 
 ###
+GET http://localhost:4004/warehouse/Customers
+Authorization: Basic ZWRpdG9yOnBhc3N3b3Jk
+
+###
 
 GET http://localhost:4004/warehouse/getInventoryQuantityByName(productName='Premium Office Chair')
 
@@ -13,6 +17,7 @@ GET http://localhost:4004/warehouse/getProductQuantitiesByName(productName='Prem
  // Creation of Sales Order
 POST http://localhost:4004/warehouse/createSalesOrderByNames
 Content-Type: application/json
+Authorization: Basic ZWRpdG9yOnBhc3N3b3Jk
 
 {
   "customerName": "John Smith",

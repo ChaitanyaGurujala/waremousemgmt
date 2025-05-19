@@ -1,42 +1,96 @@
 _schema-version: 3.3.0
 ID: warehousemgmt
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+- name: warehousemgmt-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: warehousemgmt-db
+  - name: uaa_warehousemgmt
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    instances: 1
+  build-parameters:
+    builder: npm-ci
+- name: warehousemgmt-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: warehousemgmt-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: warehousemgmt-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: warehousemgmt-destination-service
+    parameters:
+      content-target: true
+  - name: warehousemgmt_html_repo_host
+    parameters:
+      service-key:
+        name: warehousemgmt_html_repo_host-key
+  - name: uaa_warehousemgmt
+    parameters:
+      service-key:
+        name: uaa_warehousemgmt-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: managed_approuter_warehousemgmt_html_repo_host
+          ServiceInstanceName: warehousemgmt-html5-app-host-service
+          ServiceKeyName: warehousemgmt_html_repo_host-key
+          sap.cloud.service: managed_approuter
+        - Authentication: OAuth2UserTokenExchange
+          Name: managed_approuter_uaa_warehousemgmt
+          ServiceInstanceName: warehousemgmt-xsuaa-service
+          ServiceKeyName: uaa_warehousemgmt-key
+          sap.cloud.service: managed_approuter
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: warehousemgmt-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: warehousemgmt-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: warehousemgmt-destination-service
+    service-plan: lite
+- name: warehousemgmt_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: warehousemgmt-html5-app-host-service
+    service-plan: app-host
+- name: uaa_warehousemgmt
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: warehousemgmt-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: warehousemgmt-xsuaa-service
+    service-plan: application
 parameters:
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npm ci
-        - npx cds build --production
-modules:
-  - name: warehousemgmt-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      instances: 1
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: warehousemgmt-db
-
-  - name: warehousemgmt-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: warehousemgmt-db
-
-resources:
-  - name: warehousemgmt-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
